@@ -9,5 +9,13 @@ def contrast(img):
 def profondeur(img):
     return int(np.max(img))
 
-def inverser(img):
-    return 255 - img
+import numpy as np
+
+def Ouvrir(img):
+    if len(img.shape) == 3:
+        gris = img.mean(axis=2)
+        return gris.astype(int)
+    elif len(img.shape) == 2:
+        return img
+    else:
+        raise ValueError("Format d'image non supporté")

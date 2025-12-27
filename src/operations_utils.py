@@ -1,5 +1,8 @@
 import numpy as np
 
+def inverser(img):
+    return 255 - img
+
 def flipH(img):
     return np.flip(img, axis=1)
 

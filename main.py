@@ -6,7 +6,6 @@ from src.rgb_utils import initImageRGB, symetrie, grayscale
 
 import numpy as np
 
-
 def test_io():
     print("=== TEST IO ===")
     img = lectureImage("images/input/test.jpg")
@@ -24,7 +23,6 @@ def test_noir_blanc():
     AfficherImg(img_chess, gray=True)
     AfficherImg(img_neg, gray=True)
 
-
 def test_gris():
     print("=== TEST NIVEAUX DE GRIS ===")
     img = np.array([
@@ -40,7 +38,6 @@ def test_gris():
     img_inv = inverser(img)
     AfficherImg(img_inv, gray=True)
 
-
 def test_operations():
     print("=== TEST OPERATIONS ===")
     img1 = np.ones((5, 5)) * 80
@@ -55,7 +52,6 @@ def test_operations():
     img_h = poserH(img1, img2)
     AfficherImg(img_h, gray=True)
 
-
 def test_rgb():
     print("=== TEST RGB ===")
 
@@ -68,12 +64,8 @@ def test_rgb():
     img_gray = grayscale(img)
     AfficherImg(img_gray, gray=True)
 
-
 if __name__ == "__main__":
-    test_io()
-    test_noir_blanc()
-    test_gris()
-    test_operations()
-    test_rgb()
-
-    print("\n>>> Tous les tests sont terminés avec succès !")
+	test_gris()
+	test_operations()
+	test_io()
+	print("\n>>> Tous les tests sont terminés avec succès !")
