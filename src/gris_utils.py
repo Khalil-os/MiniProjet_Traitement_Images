@@ -14,7 +14,7 @@ import numpy as np
 def Ouvrir(img):
     img = np.array(img)
     if len(img.shape) == 3:
-        gris = img.mean(axis=2)
+        gris = img.mean(axis=0)
         return gris.astype(int)
     elif len(img.shape) == 2:
         return img
