@@ -2,7 +2,7 @@ from src.io_utils import lectureImage, AfficherImg, saveImage
 from src.nb_utils import image_noire, image_blanche, creerImgBlancNoir, negatif
 from src.gris_utils import luminance, contrast, profondeur, inverser
 from src.operations_utils import flipH, poserV, poserH
-from src.rgb_utils import initImageRGB, symetrie, grayscale
+from src.rgb_utils import initImageRGB, symetrie_verticale , symetrie_horizontale, grayscale
 
 import numpy as np
 
@@ -12,8 +12,7 @@ def test_io():
     img = lectureImage("images/input/test.jpg")
     AfficherImg(img)
     saveImage(img, "copie_test.png")
-
-
+    
 def test_noir_blanc():
     print("=== TEST NOIR & BLANC ===")
     img_noire = image_noire(5, 5)
@@ -58,19 +57,16 @@ def test_operations():
 
 def test_rgb():
     print("=== TEST RGB ===")
-
     img = initImageRGB(4, 6)
     AfficherImg(img)
-
-    img_sym = symetrie(img)
-    AfficherImg(img_sym)
-
+    img_sym_h = symetrie_horizontale(img)
+    AfficherImg(img_sym_h)
+    img_sym_v = symetrie_verticale(img)
+    AfficherImg(img_sym_v)
     img_gray = grayscale(img)
     AfficherImg(img_gray, gray=True)
 
-
 if __name__ == "__main__":
-    test_io()
     test_noir_blanc()
     test_gris()
     test_operations()
