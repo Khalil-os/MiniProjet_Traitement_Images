@@ -9,8 +9,6 @@ def contrast(img):
 def profondeur(img):
     return int(np.max(img))
 
-import numpy as np
-
 def Ouvrir(img):
     img = np.array(img)
     if len(img.shape) == 3:
