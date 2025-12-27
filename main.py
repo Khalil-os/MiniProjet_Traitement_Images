@@ -46,14 +46,12 @@ def test_gris():
 def test_ouvrir():
     print("=== TEST OUVRIR ===")
 
-    # Test image RGB → gris
     img_rgb = initImageRGB(4, 6)
     AfficherImg(img_rgb)
 
     img_gris = Ouvrir(img_rgb)
     AfficherImg(img_gris, gray=True)
 
-    # Test image déjà en niveaux de gris
     img_gris2 = np.array([
         [20, 60, 120],
         [30, 90, 200]
@@ -63,16 +61,26 @@ def test_ouvrir():
 
 
 def test_operations():
-    print("=== TEST OPERATIONS ===")
-    img1 = np.ones((5, 5)) * 80
-    img2 = np.ones((5, 5)) * 200
-
+    print("=== TEST OPERATIONS (VISUEL) ===")
+    img1 = np.array([
+        [  0,  50, 100, 150, 200],
+        [  0,  50, 100, 150, 200],
+        [  0,  50, 100, 150, 200],
+        [  0,  50, 100, 150, 200],
+        [  0,  50, 100, 150, 200]
+    ])
+    img2 = np.array([
+        [  0,   0,   0,   0,   0],
+        [ 50,  50,  50,  50,  50],
+        [100, 100, 100, 100, 100],
+        [150, 150, 150, 150, 150],
+        [200, 200, 200, 200, 200]
+    ])
+    AfficherImg(img1, gray=True)
     img_flip = flipH(img1)
     AfficherImg(img_flip, gray=True)
-
     img_v = poserV(img1, img2)
     AfficherImg(img_v, gray=True)
-
     img_h = poserH(img1, img2)
     AfficherImg(img_h, gray=True)
 
@@ -92,9 +100,12 @@ def test_rgb():
     AfficherImg(img_gray, gray=True)
 
 
-if __name__ == "__main__":
-    test_ouvrir()
-    test_operations()
-    test_rgb()
+def test_negatif_image():
+	img = lectureImage("child.jpg")
+	img_gris = Ouvrir(img)
+	img_B = inverser(img_gris)
+	AfficherImg(img_B, gray=True)
 
+if __name__ == "__main__":
+    test_negatif_image()
     print("\n>>> Tous les tests sont terminés avec succès !")
