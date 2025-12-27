@@ -1,8 +1,8 @@
 from src.io_utils import lectureImage, AfficherImg, saveImage
 from src.nb_utils import image_noire, image_blanche, creerImgBlancNoir, negatif
-from src.gris_utils import luminance, contrast, profondeur, inverser
-from src.operations_utils import flipH, poserV, poserH
-from src.rgb_utils import initImageRGB, symetrie_verticale , symetrie_horizontale, grayscale
+from src.gris_utils import luminance, contrast, profondeur, Ouvrir
+from src.operations_utils import inverser, flipH, poserV, poserH
+from src.rgb_utils import initImageRGB, symetrie_verticale, symetrie_horizontale, grayscale
 
 import numpy as np
 
@@ -12,7 +12,8 @@ def test_io():
     img = lectureImage("images/input/test.jpg")
     AfficherImg(img)
     saveImage(img, "copie_test.png")
-    
+
+
 def test_noir_blanc():
     print("=== TEST NOIR & BLANC ===")
     img_noire = image_noire(5, 5)
@@ -20,6 +21,8 @@ def test_noir_blanc():
     img_chess = creerImgBlancNoir(8, 8)
     img_neg = negatif(img_chess)
 
+    AfficherImg(img_noire, gray=True)
+    AfficherImg(img_blanche, gray=True)
     AfficherImg(img_chess, gray=True)
     AfficherImg(img_neg, gray=True)
 
@@ -38,6 +41,25 @@ def test_gris():
 
     img_inv = inverser(img)
     AfficherImg(img_inv, gray=True)
+
+
+def test_ouvrir():
+    print("=== TEST OUVRIR ===")
+
+    # Test image RGB → gris
+    img_rgb = initImageRGB(4, 6)
+    AfficherImg(img_rgb)
+
+    img_gris = Ouvrir(img_rgb)
+    AfficherImg(img_gris, gray=True)
+
+    # Test image déjà en niveaux de gris
+    img_gris2 = np.array([
+        [20, 60, 120],
+        [30, 90, 200]
+    ])
+    img_gris2_out = Ouvrir(img_gris2)
+    AfficherImg(img_gris2_out, gray=True)
 
 
 def test_operations():
@@ -59,16 +81,19 @@ def test_rgb():
     print("=== TEST RGB ===")
     img = initImageRGB(4, 6)
     AfficherImg(img)
+
     img_sym_h = symetrie_horizontale(img)
     AfficherImg(img_sym_h)
+
     img_sym_v = symetrie_verticale(img)
     AfficherImg(img_sym_v)
+
     img_gray = grayscale(img)
     AfficherImg(img_gray, gray=True)
 
+
 if __name__ == "__main__":
-    test_noir_blanc()
-    test_gris()
+    test_ouvrir()
     test_operations()
     test_rgb()
 
