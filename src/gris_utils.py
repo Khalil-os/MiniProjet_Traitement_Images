@@ -12,7 +12,7 @@ def profondeur(img):
 def Ouvrir(img):
     img = np.array(img)
     if len(img.shape) == 3:
-        gris = img.mean(axis=0)
+        gris = img.mean(axis=2)
         return gris.astype(int)
     elif len(img.shape) == 2:
         return img
